@@ -27,7 +27,7 @@ function cartBuyProducts(){
         </div>
         `
     }else{
-        productsLS.forEach(product => {
+        productsLS.forEach((product, index) => {
             let cartProductList = document.createElement('div');
             cartProductList.classList.add('product-cart-list')
             cartProductList.innerHTML = `
@@ -35,7 +35,7 @@ function cartBuyProducts(){
                 <div class="product-details flex column">
                     <h3 class="product-name">${product.name}</h3>
                     <span class="product-price">$${product.price}</span>
-                    <button class="delete-btn">X</button>
+                    <button class="delete-btn" data-index=${index}>X</button>
                 </div>
             `
             cartbuyProducts.appendChild(cartProductList);
@@ -46,7 +46,7 @@ function cartBuyProducts(){
 function deleteproductCart(e){
     if(e.target.classList.contains('delete-btn')){
         let products = getItemLS();
-        let productID = parseInt(products.id);
+        let productID = parseInt(e.target.dataset.index);
         products.splice(productID, 1);
         saveLS(products)
         cartBuyProducts();
