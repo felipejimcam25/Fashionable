@@ -585,6 +585,7 @@ const cartArray = getItemLS();
 //THIS FUNCTION SEARCH THE PRODUCT.ID WITH THE SAME OF THE BUTTONCLICKED.ID INSIDE OF THE CARTARRAY AND IF THE PRODUCT ID IS REPEAT INSCREASES THE AMOUNT OF THIS PRODUCT
 function addToCart (e){
     const idBtn = e.currentTarget.id;
+    console.log(idBtn)
     const addedProduct = productsArray.find(product => product.id === idBtn);//FIND= RETURN THE FIRST ELEMENT IN THE ARRAY THAT MATCHES WITH THE ID
     
     if (cartArray.some(product => product.id === idBtn)){//SOME= IS AN ARRAY METHOD THAT CHECKS IF AT LEAST ONE ELEMENT IN THE ARRAY PASSES THE CONDITION( THE CONDITION IS DEFINE BY ME )
@@ -659,7 +660,7 @@ function chargeProducts (actualFilter){
                 <div class="product-details flex column">
                     <h3 class="product-name">${product.name}</h3>
                     <span class="product-price">$${product.price}</span>
-                    <button class="add-product">Add To Cart</button>
+                    <button class="add-product" id="${product.id}">Add To Cart</button>
                 </div>
             `;
             productsContent.appendChild(productsList)
